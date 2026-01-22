@@ -4,3 +4,4 @@
 - Update 4: keeping commits separate
 - Update 5: adding a fifth note
 - Update 6: more practice for muscle memory
+- Update 7: almost there
