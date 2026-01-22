@@ -7,3 +7,4 @@
 - Update 7: almost there
 - Update 8: continuing README edits
 - Update 9: one more after this
+- Update 10: completed 10 separate changes
