@@ -1,0 +1,13 @@
+species,clade,femur_length_mm,tibia_length_mm,humerus_length_mm
+Tyrannosaurus_rex,Theropoda,1320,1120,460
+Allosaurus_fragilis,Theropoda,850,760,420
+Velociraptor_mongoliensis,Theropoda,350,380,250
+Coelophysis_bauri,Theropoda,260,290,180
+Triceratops_horridus,Ornithischia,1150,980,640
+Stegosaurus_stenops,Ornithischia,1050,900,620
+Iguanodon_bernissartensis,Ornithischia,900,820,600
+Ankylosaurus_magniventris,Ornithischia,980,820,560
+Apatosaurus_louisae,Sauropodomorpha,1850,1400,950
+Brachiosaurus_altithorax,Sauropodomorpha,2000,1500,1100
+Diplodocus_carnegii,Sauropodomorpha,1700,1320,880
+Plateosaurus_engelhardti,Sauropodomorpha,950,780,520

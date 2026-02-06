@@ -1,0 +1,18 @@
+Project Idea: 
+
+Analyze how different dinosaur clades vary in limb proportions and compare ratios such as hindlimb proportion and forelimb vs hindlimb proportion across Theropoda, Ornithischia, and Sauropodomorpha. These ratios can reflect differences in locomotion and body plan. 
+
+Potential sources of Data:
+
+I will use published measurement tables from the Dryad Repository. I will search Dryad for dinosaur morphological datasets that include limb bone measurements  and taxonomy. Each row will represent a specimen or a species-level measurement, depending on what the dataset provides. If necessary, I will combine two Dryad datasets that cover different clades to increase coverage.
+
+What the Data might look like: 
+
+- species (character): species name
+- clade (character): Theropoda / Ornithischia / Sauropodomorpha
+- femur_length_mm (numeric)
+- tibia_length_mm (numeric)
+- humerus_length_mm (numeric)
+- femur_tibia_ratio (numeric): femur_length_mm / tibia_length_mm
+- forelimb_hindlimb_ratio (numeric): humerus_length_mm / femur_length_mm
+- source_dataset (character): dataset name/DOI (optional)
