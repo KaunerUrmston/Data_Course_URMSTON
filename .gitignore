@@ -12,3 +12,10 @@
 # Ignore local data/outputs inside Assignment_6
 Assignment_6/Data/
 Assignment_6/output/
+.DS_Store
+.Rapp.history
+.Rhistory
+.RData
+.Rproj.user/
+Fastq_Copy_URMSTON_Exam1/
+Exams/Exam_1/data/
