@@ -1,0 +1,14 @@
+.DS_Store
+**/.DS_Store
+.Rhistory
+.RData
+.Rproj.user/
+**/.Rproj.user/
+
+# Ignore rendered outputs
+*.html
+*.pdf
+
+# Ignore local data/outputs inside Assignment_6
+Assignment_6/Data/
+Assignment_6/output/
