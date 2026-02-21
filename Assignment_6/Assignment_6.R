@@ -1,0 +1,6 @@
+library(tidyverse)
+dat <- read_csv("../../Data/BioLog_Plate_Data.csv")
+setwd("~/Desktop/Assignment_6")
+getwd()
+list.files()
+file.exists("Data/BioLog_Plate_Data.csv")
