@@ -102,3 +102,4 @@ anim_save("output/itaconic_acid_animation.gif", animation = anim)
 
 
 list.files("output")
+
