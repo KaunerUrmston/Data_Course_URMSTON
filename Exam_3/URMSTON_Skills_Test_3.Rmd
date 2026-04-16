@@ -1,0 +1,124 @@
+---
+title: "URMSTON_Skills_Tests_3"
+author: "Kauner Urmston"
+date: "2026-04-15"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(broom)
+```
+
+## Tastk 1: Load and Clean Faculty Salaries Data
+
+```{r}
+faculty <- read_csv("FacultySalaries_1995.csv")
+
+glimpse(faculty)
+```
+
+```{r}
+faculty_tidy <- faculty %>%
+  select(State, Tier,
+         AvgFullProfSalary,
+         AvgAssocProfSalary,
+         AvgAssistProfSalary) %>%
+  
+  pivot_longer(
+    cols = starts_with("Avg"),
+    names_to = "Rank",
+    values_to = "Salary"
+  )
+
+faculty_tidy <- faculty_tidy %>%
+  mutate(
+    Rank = case_when(
+      Rank == "AvgFullProfSalary" ~ "Full",
+      Rank == "AvgAssocProfSalary" ~ "Assoc",
+      Rank == "AvgAssistProfSalary" ~ "Assist"
+    )
+  )
+
+glimpse(faculty_tidy)
+```
+
+```{r}
+faculty_tidy <- faculty_tidy %>%
+  mutate(Rank = factor(Rank, levels = c("Assist", "Assoc", "Full")))
+
+ggplot(faculty_tidy, aes(x = Rank, y = Salary, fill = Rank)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.2, alpha = 0.5) +
+  facet_wrap(~Tier) +
+  theme_minimal()
+```
+
+## Task 2: ANOVA Model
+
+```{r}
+anova_model <- aov(Salary ~ State + Tier + Rank, data = faculty_tidy)
+
+summary(anova_model)
+```
+
+## Task 3: Juniper Oils Data
+
+```{r}
+juniper <- read_csv("Juniper_Oils.csv")
+
+glimpse(juniper)
+```
+
+```{r}
+chemicals <- c(
+  "alpha-pinene","para-cymene","alpha-terpineol","cedr-9-ene",
+  "alpha-cedrene","beta-cedrene","cis-thujopsene","alpha-himachalene",
+  "beta-chamigrene","cuparene","compound 1","alpha-chamigrene",
+  "widdrol","cedrol","beta-acorenol","alpha-acorenol",
+  "gamma-eudesmol","beta-eudesmol","alpha-eudesmol",
+  "cedr-8-en-13-ol","cedr-8-en-15-ol","compound 2","thujopsenal"
+)
+
+juniper_tidy <- juniper %>%
+  select(YearsSinceBurn, all_of(chemicals)) %>%
+  pivot_longer(
+    cols = -YearsSinceBurn,
+    names_to = "ChemicalID",
+    values_to = "Concentration"
+  )
+
+glimpse(juniper_tidy)
+```
+
+## Task 4:
+
+```{r}
+facet_wrap(~ChemicalID, scales = "free_y", ncol = 5)
+
+ggplot(juniper_tidy, aes(x = YearsSinceBurn, y = Concentration)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(se = FALSE) +
+  facet_wrap(~ChemicalID, scales = "free_y") +
+  theme_minimal()
+```
+
+## Task 5:
+
+```{r}
+library(broom)
+
+model_results <- juniper_tidy %>%
+  group_by(ChemicalID) %>%
+  do(tidy(lm(Concentration ~ YearsSinceBurn, data = .)))
+
+significant_results <- model_results %>%
+  filter(term == "YearsSinceBurn", p.value < 0.05)
+
+significant_results
+```
+
